@@ -1,8 +1,8 @@
 {% extends "include/homepage.html" %}
 {% load static %}
 {% block content %}
-{% include 'include/header.html' %}
 
+{% include 'include/header.html' %}
     <!-- breadcrumb start  -->
     <div class="breadcrumb-area">
         <div class="container">
@@ -34,7 +34,7 @@
             <div class="row">
                 <div class="col-md-12">
                     <div class="section-title text-center">
-                        <h3>CONTACT US FOR ANY QUARY</h3>
+                        <h3>Свяжитесь с нами</h3>
                     </div>
                 </div>
             </div>
@@ -44,9 +44,8 @@
                         <div class="icon">
                             <i class="icon-call-header"></i>
                         </div>
-                        <a href="tel:+12345678910">+123456 78910</a><br>
-                        <a href="tel:+12345678911">+123456 78911</a><br>
-                        <span>Mobile</span>
+                        <a href="tel:{{settings.phone}}">{{settings.phone}}</a><br>
+                        <span>Телефонный номер</span>
                     </div>
                 </div>
                 <div class="col-md-4">
@@ -54,9 +53,8 @@
                         <div class="icon">
                             <i class="fa fa-envelope-open"></i>
                         </div>
-                        <a href="#">brandfashion@email.com</a><br>
-                        <a href="#">support@zwin.io</a><br>
-                        <span>Email</span>
+                        <a href="#">{{settings.email}}</a><br>
+                        <span>Почта</span>
                     </div>
                 </div>
                 <div class="col-md-4">
@@ -65,7 +63,7 @@
                             <i class="fa fa-map-marker"></i>
                         </div>
                         <span>
-                            125/A, CA Commercial Area <br>California, USA<br> Address
+                            {{settings.address}}
                         </span>
                     </div>
                 </div>
@@ -79,29 +77,24 @@
         <div class="container">
             <div class="row">
                 <div class="col-md-12">
-                    <form>
+                    <form method = "POST">
+                        {% csrf_token %}
                         <div class="form-row">
                           <div class="form-group col-md-6">
-                            <input type="text" class="form-control" id="name" placeholder="Name*">
-                          </div>
-                          <div class="form-group col-md-6">
-                            <input type="number" class="form-control" id="phone" placeholder="Phone*">
+                            <input type="text" class="form-control"  name = "name" placeholder="введите имя">
                           </div>
                         </div>
                         <div class="form-row">
                           <div class="form-group col-md-6">
-                            <input type="email" class="form-control" id="email" placeholder="Email*">
-                          </div>
-                          <div class="form-group col-md-6">
-                            <input type="text" class="form-control" id="topic" placeholder="Topic">
+                            <input type="email" class="form-control" name = "email" placeholder="введите почту">
                           </div>
                         </div>
                         <div class="form-row">
                             <div class="form-group col-md-12">
-                              <textarea name="message" id="message" rows="8" placeholder="Message"></textarea>
+                              <textarea name="message" rows="8" placeholder="введите сообщение"></textarea>
                             </div>
                         </div>
-                        <button type="submit" class="btn btn-contact">Send Message</button>
+                        <button type="submit" class="btn btn-contact">Отправить сообщение</button>
                     </form>
                 </div>
             </div>
@@ -248,6 +241,4 @@
             </div>
         </div>
     </footer>
-
-
 {% endblock %}

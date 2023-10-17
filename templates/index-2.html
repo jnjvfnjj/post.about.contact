@@ -1,8 +1,9 @@
 {% extends "include/homepage.html" %}
 {% load static %}
-{% block content %}
 
-{% include 'include/header.html' %}
+{% block content%}
+
+{% include 'include/header.html'%}
 
     <!-- banner start -->
     <div class="banner-style-02">
@@ -1033,54 +1034,23 @@
                 </div>
             </div>
             <div class="row">
+                {% for new in blog%}
                 <div class="col-lg-4 col-md-6 col-sm-6 col-12">
                     <div class="article-style-01">
                         <div class="thumb">
-                            <img src="{% static 'assets/img/blog/1.png' %}" alt="">
-                            <span class="tag tag-green">MODAL</span>
+                            <img src="{{new.image.url}}" alt="">
                         </div>
                         <div class="content">
-                            <span class="date">June 24, 2020</span>
-                            <h3><a href="#">Never putting your Cocktail down to leave</a></h3>
-                            <p>It reopened this year following a refurb which aims to cement its place a surfer’s paradise. It now boasts two.</p>
+                            <span class="date">{{new.make_at}}</span>
+                            <h3><a href="{% url 'news_details' new.id %}">{{new.title}}</a></h3>
+                            <p>{{new.descriptions|truncatewords:5}}</p>
                             <div class="btn-wrapper">
-                                <a href="#" class="btn">Read more</a>
+                                <a href="{% url 'news_details' new.id %}" class="btn">Read more</a>
                             </div>
                         </div>
                     </div>
                 </div>
-                <div class="col-lg-4 col-md-6 col-sm-6 col-12">
-                    <div class="article-style-01">
-                        <div class="thumb">
-                            <img src="{% static 'assets/img/blog/2.png' %}" alt="">
-                            <span class="tag tag-green">LIFESTYLE</span>
-                        </div>
-                        <div class="content">
-                            <span class="date">June 24, 2020</span>
-                            <h3><a href="#">7 Things You Can’t Wear After Labor Day Read</a></h3>
-                            <p>Typography is the work of typesetters, compositors, typographers, graphic designers, art directors, manga</p>
-                            <div class="btn-wrapper">
-                                <a href="#" class="btn">Read more</a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-lg-4 col-md-6 col-sm-6 col-12">
-                    <div class="article-style-01">
-                        <div class="thumb">
-                            <img src="{% static 'assets/img/blog/3.png' %}" alt="">
-                            <span class="tag tag-green">FASHION TRENDS</span>
-                        </div>
-                        <div class="content">
-                            <span class="date">June 24, 2020</span>
-                            <h3><a href="#">Never putting your Cocktail down to leave</a></h3>
-                            <p>It reopened this year following a refurb which aims to cement its place a surfer’s paradise. It now boasts two.</p>
-                            <div class="btn-wrapper">
-                                <a href="#" class="btn">Read more</a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
+                {% endfor %}
             </div>
         </div>
     </div>
